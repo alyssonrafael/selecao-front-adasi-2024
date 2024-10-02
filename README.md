@@ -1,46 +1,75 @@
-# Getting Started with Create React App
+# Crypto Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é uma aplicação web que permite aos usuários visualizar detalhes e gráficos de cotações de criptomoedas. A aplicação exibe os preços e volumes negociados nos últimos 7 dias, além de permitir a comparação de preços entre diferentes criptomoedas.
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+* **Cotação de Criptomoedas** : Exibe a cotação de uma criptomoeda específica nos últimos 7 dias.
+* **Volume de Negociação** : Mostra o volume de negociação diário da criptomoeda nos últimos 7 dias.
+* **Comparação entre Criptomoedas** : Permite comparar o preço da moeda selecionada com Ethereum, Dogecoin e Binance Coin.
+* **Gráficos Interativos** : Gráficos gerados com `react-chartjs-2` para visualização de dados históricos.
+* **Favoritos** : Gerenciamento de criptomoedas favoritas utilizando Context API.
+* **Modo Escuro** : Alternância entre modo claro e escuro com persistência no localStorage.
 
-### `npm start`
+## Tecnologias Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* **React** : Biblioteca JavaScript para a construção da interface.
+* **TypeScript** : Tipagem estática para JavaScript, proporcionando uma melhor experiência de desenvolvimento.
+* **Tailwind CSS** : Framework CSS para o design da interface.
+* **Context API** : Gerenciamento de estado dos favoritos das criptomoedas.
+* **Chart.js** : Biblioteca de gráficos utilizada para renderizar as cotações e volumes.
+* **Axios** : Utilizado para fazer requisições HTTP à API do CoinGecko.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Instalação
 
-### `npm test`
+### Pré-requisitos
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **Node.js** e **npm** instalados.
 
-### `npm run build`
+### Passos
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone este repositório:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```
+   git clone https://github.com/alyssonrafael/selecao-front-adasi-2024
+   ```
+2. Navegue até o diretório do projeto:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```
+   cd selecao-front-adasi-2024
+   ```
+3. Instale as dependências:
 
-### `npm run eject`
+   ```
+   npm install
+   ```
+4. Inicie o servidor de desenvolvimento:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```
+   npm start
+   ```
+5. Acesse a aplicação em [http://localhost:3000]().
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API Utilizada
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+A aplicação consome dados da API pública do  **[CoinGecko]()** , que oferece informações sobre preços, volumes, e outros detalhes de criptomoedas.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Limitações de Requisições
 
-## Learn More
+A API do CoinGecko permite poucas requisiçoes por vez . Se o limite for excedido, a aplicação pode retornar um erro de requisição. Para evitar isso, a aplicação faz uso de caching na pagina inicial e outras otimizações para gerenciar o número de requisições.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Estrutura do Projeto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Principais Componentes
+
+* **CryptoDetail** : Componente responsável por exibir os detalhes de uma criptomoeda específica, incluindo os gráficos de cotação e volume de negociação, bem como a comparação com outras moedas pre definidas.
+* **CryptoContext:** um contexto React que utiliza a Context API para gerenciar o estado global da aplicação, especialmente relacionado ao gerenciamento das criptomoedas favoritas. Ele centraliza a lógica de adicionar, remover e armazenar as moedas favoritas, facilitando o compartilhamento desse estado entre diferentes componentes sem a necessidade de passar props manualmente.
+* **CryptoList** : Exibe uma lista das 15 principais criptomoedas e permite ao usuário marcar as suas favoritas.
+
+## Como Usar
+
+1. **Visualizar Criptomoedas** : Na página inicial, selecione uma criptomoeda para ver seus detalhes, como preços e volume de negociação nos últimos 7 dias.
+2. **Comparação de Preços** : Na página de detalhes, veja a comparação do preço da criptomoeda selecionada com Ethereum, Dogecoin e Binance Coin.
+3. **Favoritar Moedas** : Marque suas criptomoedas favoritas clicando no ícone de coração. As moedas favoritas serão salvas e exibidas em uma lista separada que pode ser acessada na barra de navegação no canto superior da tela.
+4. **Alternar Modo Escuro** : Use o botão no canto superior direito para alternar entre os modos claro e escuro. Sua escolha será armazenada no localStorage para manter a configuração entre sessões.
+5. **Busca e filtros:** na pagina inicial há a possibilidade de realizar pesquisas entre as 15 moedas principais por nome e por simbolo da moeda. Há também a possibilidade de filtro com as moedas apenas em alta eapenas em queda.
